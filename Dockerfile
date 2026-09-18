@@ -15,7 +15,7 @@ FROM ${NODE_IMAGE}
 
 LABEL org.opencontainers.image.title="9router"
 LABEL org.opencontainers.image.description="9Router AI gateway with Cursor CLI (cursor-agent)"
-LABEL org.opencontainers.image.source="https://github.com/decolua/9router"
+LABEL org.opencontainers.image.source="https://github.com/tsulatsitamim/9router-cursor"
 
 WORKDIR /app
 

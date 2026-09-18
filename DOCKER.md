@@ -3,7 +3,7 @@
 Run 9Router in a container. The image bundles the 9Router server **and the Cursor CLI** (`cursor-agent` / `agent`), so you can run agents against 9Router from inside the same container.
 
 - Build locally from this repo's [`Dockerfile`](./Dockerfile) (Debian slim + glibc, required by the Cursor CLI).
-- Published image: [`decolua/9router`](https://hub.docker.com/r/decolua/9router) — multi-platform `linux/amd64` + `linux/arm64` (built from the same Dockerfile by CI).
+- Published image: [`tsulatsitamim/9router`](https://hub.docker.com/r/tsulatsitamim/9router) — multi-platform `linux/amd64` + `linux/arm64` (built from the same Dockerfile by CI).
 
 > The Cursor CLI ships glibc-only binaries, so this image is Debian-based (glibc).
 
@@ -16,8 +16,8 @@ Run 9Router in a container. The image bundles the 9Router server **and the Curso
 ### Option A — build locally (includes Cursor CLI)
 
 ```bash
-git clone https://github.com/decolua/9router.git
-cd 9router
+git clone https://github.com/tsulatsitamim/9router-cursor.git
+cd 9router-cursor
 docker build -t 9router:latest .
 docker run -d \
   --name 9router \
@@ -35,7 +35,7 @@ docker run -d \
   -p 20128:20128 \
   -v "$HOME/.9router:/app/data" \
   -e DATA_DIR=/app/data \
-  decolua/9router:latest
+  tsulatsitamim/9router:latest
 ```
 
 App listens on port `20128`. Open: http://localhost:20128
@@ -183,7 +183,7 @@ If Headroom runs on the Docker host instead of as a sidecar, use `http://host.do
 
 ```bash
 # published image
-docker pull decolua/9router:latest
+docker pull tsulatsitamim/9router:latest
 docker rm -f 9router
 # re-run the quick start command
 
@@ -235,19 +235,13 @@ docker inspect --format '{{.State.Health.Status}}' 9router
 curl -fsS http://localhost:20128/ >/dev/null && echo up
 ```
 
-## Publish (automatic via CI)
+## Publish
 
-Push a git tag `v*` → GitHub Actions builds multi-platform (amd64+arm64) from [`Dockerfile`](./Dockerfile) and pushes to:
-
-- `ghcr.io/decolua/9router:v{version}` + `:latest`
-- `decolua/9router:v{version}` + `:latest`
+Build and push the image manually:
 
 ```bash
-# Use scripts/release.js (recommended)
-node scripts/release.js "Release title" "Notes"
-
-# Or manually
-git tag v0.4.x && git push origin v0.4.x
+docker build -t tsulatsitamim/9router:latest .
+docker push tsulatsitamim/9router:latest
 ```
 
-Workflow: [`.github/workflows/docker-publish.yml`](./.github/workflows/docker-publish.yml)
+Source repo: https://github.com/tsulatsitamim/9router-cursor
