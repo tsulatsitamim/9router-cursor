@@ -4,7 +4,7 @@ Container image for [9Router](https://github.com/decolua/9router), an OpenAI-com
 
 The image **installs 9Router from npm** (no source copy) and preinstalls the **Cursor CLI** (`cursor-agent` / `agent`), so you can run agents against the gateway from inside the same container.
 
-- Image: [`tsulatsitamim/9router`](https://hub.docker.com/r/tsulatsitamim/9router)
+- Image: [`tsulatsitamim/9router-cursor`](https://hub.docker.com/r/tsulatsitamim/9router-cursor)
 - Full Docker guide: [`DOCKER.md`](./DOCKER.md)
 
 ## Quick start
@@ -16,7 +16,7 @@ docker run -d \
   -v 9router-data:/app/data \
   -v 9router-cursor:/home/node/.cursor \
   -e DATA_DIR=/app/data \
-  tsulatsitamim/9router:latest
+  tsulatsitamim/9router-cursor:latest
 ```
 
 Open http://localhost:20128. First login password is `123456` — set `INITIAL_PASSWORD` to override.
@@ -49,7 +49,7 @@ Common env vars: `DATA_DIR`, `PORT` (default `20128`), `HOSTNAME` (default `0.0.
 ## Build
 
 ```bash
-docker build -t tsulatsitamim/9router:latest .
+docker build -t tsulatsitamim/9router-cursor:latest .
 ```
 
 Pin versions with `--build-arg NINEROUTER_VERSION=...` and `--build-arg BETTER_SQLITE3_VERSION=...`.

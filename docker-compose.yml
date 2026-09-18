@@ -2,11 +2,11 @@ services:
   9router:
     # Builds the Cursor-CLI-enabled image from ./Dockerfile.
     # To use the published image instead, drop `build:` and set:
-    #   image: tsulatsitamim/9router:latest
+    #   image: tsulatsitamim/9router-cursor:latest
     build:
       context: .
       dockerfile: Dockerfile
-    image: tsulatsitamim/9router:latest
+    image: tsulatsitamim/9router-cursor:latest
     container_name: 9router
     restart: always
     ports:
